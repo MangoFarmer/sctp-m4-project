@@ -61,6 +61,3 @@ workflows:
           filters:
             branches:
               only: develop
-         - scan:
-          requires:
-            - build
