@@ -61,8 +61,8 @@ deploy:
           name: Heroku Container Push
           command: | 
             heroku container:login
-            heroku container:push web -a sudhakar-su-devops
-            heroku container:release web -a sudhakar-su-devops
+            heroku container:push web -a mangofarmer-su-devops
+            heroku container:release web -a mangofarmer-su-devops
             
 workflows:
   simple_workflow:
