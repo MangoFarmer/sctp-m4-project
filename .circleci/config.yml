@@ -63,6 +63,3 @@ workflows:
           requires:
             - test
             - scan
-      - deploy:
-          requires:
-            - build-and-push
