@@ -51,15 +51,27 @@ jobs:
             
 workflows:
   simple_workflow:
-    jobs:
-      - build
+     jobs:
+      - build:
+          filters:
+            branches:
+              only: develop
       - test:
           requires:
-            - build
+            - build 
+          filters:
+            branches:
+              only: develop     
       - scan:
           requires:
             - build
-      - build-and-push:
+          filters:
+            branches:
+              only: develop     
+       - build-and-push:
           requires:
             - test
             - scan
+          filters:
+            branches:
+              only: release 
