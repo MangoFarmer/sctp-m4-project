@@ -52,7 +52,7 @@ jobs:
 workflows:
   ci_flow:
     jobs:
-      - build:
+      - build
           filters:
             branches:
               only: develop
@@ -65,7 +65,13 @@ workflows:
       - scan:
           requires:
             - build
+          filters:
+            branches:
+              only: develop
       - build-and-push:
           requires:
             - test
             - scan
+          filters:
+            branches: 
+              only: release
