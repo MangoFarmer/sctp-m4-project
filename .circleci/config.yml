@@ -50,9 +50,9 @@ jobs:
           tag: ${CIRCLE_SHA1}
             
 workflows:
-  ci_flow:
+  simple_workflow:
     jobs:
-      - build
+      - build:
           filters:
             branches:
               only: develop
@@ -61,17 +61,14 @@ workflows:
             - build 
           filters:
             branches:
-              only: develop      
-      - scan:
+              only: develop
+       - scan:
           requires:
-            - build
+            - build 
           filters:
             branches:
-              only: develop
-      - build-and-push:
-          requires:
-            - test
-            - scan
-          filters:
+              only: develop     
+      - build-and-push:  
+          filters: 
             branches: 
-              only: release
+              ignore: main 
