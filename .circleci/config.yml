@@ -58,10 +58,10 @@ workflows:
               only: develop
       - test:
           requires:
-            - build
-           filters:
+            - build 
+          filters:
             branches:
-              only: develop     
+              only: develop      
       - scan:
           requires:
             - build
