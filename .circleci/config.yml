@@ -50,9 +50,12 @@ jobs:
           tag: ${CIRCLE_SHA1}
             
 workflows:
-  simple_workflow:
+  ci_flow:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: develop
       - test:
           requires:
             - build
