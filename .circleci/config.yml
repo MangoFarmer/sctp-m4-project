@@ -49,16 +49,21 @@ jobs:
           tag: ${CIRCLE_SHA1}
       
 workflows:
-  simple_workflow:
+  ci_flow:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: develop
       - test:
           requires:
-            - build
-      - scan:
+            - build 
+          filters:
+            branches:
+              only: develop
+        - scan:
           requires:
             - build
-      - build-and-push:
-          requires:
-            - test
-            - scan
+          filters:
+            branches:
+              only: develop
