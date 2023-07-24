@@ -59,6 +59,9 @@ workflows:
       - test:
           requires:
             - build
+           filters:
+            branches:
+              only: develop     
       - scan:
           requires:
             - build
