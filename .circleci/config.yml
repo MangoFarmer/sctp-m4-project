@@ -52,7 +52,7 @@ jobs:
 workflows:
   simple_workflow:
     jobs:
-      - build:
+      - build
           filters:
             branches:
               only: develop
@@ -66,4 +66,3 @@ workflows:
           filters:
             branches: 
               ignore: develop
-              only: release
