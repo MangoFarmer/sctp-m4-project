@@ -61,12 +61,13 @@ deploy:
           name: Heroku Container Push
           command: | 
             heroku container:login
-            heroku container:push web -a mangofarmer-su-devops
-            heroku container:release web -a mangofarmer-su-devops
+            heroku container:push web -a sudhakar-su-devops
+            heroku container:release web -a sudhakar-su-devops
             
 workflows:
   simple_workflow:
-     - build:
+    jobs:
+      - build:
           filters:
             branches:
               only: develop
@@ -75,14 +76,8 @@ workflows:
             - build 
           filters:
             branches:
-              only: develop     
-      - scan:
-          requires:
-            - build
-          filters:
-            branches:
-               only: develop
-         - build-and-push:  
+              only: develop    
+      - build-and-push:  
           filters:
             branches: 
               ignore: develop
