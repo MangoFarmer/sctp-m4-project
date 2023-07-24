@@ -62,12 +62,12 @@ workflows:
           filters:
             branches:
               only: develop
-       - scan:
-          requires:
-            - build 
-          filters:
-            branches:
-              only: develop     
+       # - scan:
+       #    requires:
+       #      - build 
+       #    filters:
+       #      branches:
+       #        only: develop     
       - build-and-push:  
           filters: 
             branches: 
