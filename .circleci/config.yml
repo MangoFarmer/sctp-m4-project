@@ -30,8 +30,7 @@ jobs:
         - run: docker build -t $IMAGE_NAME .
         - snyk/scan:
             severity-threshold: critical
-            docker-image-name: $IMAGE_NAME
-            
+            docker-image-name: $IMAGE_NAME          
   build-and-push:
     executor: docker/docker
     docker:
@@ -39,15 +38,15 @@ jobs:
         auth:
             username: $DOCKER_LOGIN
             password: $DOCKER_PASSWORD
-     steps:
+    steps:
       - setup_remote_docker
       - checkout
       - docker/check
       - docker/build:
-          image: mangofarmer/education-space    
+          image: mangofarmer/education-space
           tag: ${CIRCLE_SHA1}
       - docker/push:
-          image: mangofarmer/education-space    
+          image: mangofarmer/education-space
           tag: ${CIRCLE_SHA1}
   deploy:
     docker:
@@ -62,7 +61,7 @@ jobs:
                 heroku container:login
                 heroku container:push web -a mangofarmer-su-devops
                 heroku container:release web -a mangofarmer-su-devops
-            
+
 workflows:
   # CI_flow for develop branch
   ci_flow:
@@ -71,20 +70,20 @@ workflows:
           filters:
               branches:
                 only: develop
-       - test:
+      - test:
           requires:
             - build
           filters:
               branches:
                 only: develop
-     - scan:
+      - scan:
           requires:
             - build
           filters:
               branches:
                 only: develop
 
-  # CICD_flow for release branch
+  # CICD_flow for realse branch
   cicd_flow:
     jobs:
       - build:
