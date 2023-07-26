@@ -62,7 +62,6 @@ jobs:
                 heroku container:login
                 heroku container:push web -a mangofarmer-su-devops
                 heroku container:release web -a mangofarmer-su-devops
-
             
 workflows:
   # CI_flow for develop branch
